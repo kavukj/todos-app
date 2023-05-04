@@ -25,7 +25,7 @@ const App = () => {
         <h4 className='flex justify-center mt-5'>My Todos</h4>
       </div>
       {/* Returns Login button if no user logged */}
-      <div className='flex justify-center h-[fit-content] my-10 items-center'>
+      <div className='flex justify-center h-[fit-content] my-8 items-center'>
         {!user ?
           <button onClick={handleLogin}
             className='rounded-xl bg-gray-950 text-white py-3 px-10 text-xl h-[fit-content] hover:bg-gray-800'>
