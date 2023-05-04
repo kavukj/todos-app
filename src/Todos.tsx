@@ -1,29 +1,21 @@
 import React, { useContext, useState } from "react";
 import { TodoContent, TodoI, TodosContext } from "./context/todosContext";
+import Todo from "./Todo";
 
 const Todos = () => {
-    const { todos, setTodosList, updateTodosVisibility } = useContext(TodosContext) as TodoContent;
-
-    const handleSubTask = (id: number, value: boolean) => {
-        updateTodosVisibility(id, value)
-    }
+    const { todos } = useContext(TodosContext) as TodoContent;
+    const [show, setshow] = useState(false);
 
     return (
         <div>
-            {todos.map((todo: TodoI) => (
-                <div className="border-solid border border-gray-400 p-2 w-[400px] flex justify-between items-center">
-                    <p>{todo.name}</p>
-                    <button className="bg-green-600 p-2 rounded-md text-sm"
-                        onClick={() => handleSubTask(todo.id, true)}>Add Subtask</button>
-                    {todo.formVisible ?
-                        <div>
-                            <input className="block" type="text" />
-                            <span className="text-red-600 font-extrabold cursor-pointer"
-                                onClick={() => updateTodosVisibility(todo.id, false)}>X</span>
-                        </div> :
-                        null}
-                </div>
-            ))}
+            <div>
+                {todos.map((todo: TodoI) => (
+                    <Todo key={todo.id} todo={todo} />
+                ))}
+            </div>
+            <div>
+                <button className="bg-gray-800 hover:bg-black text-white w-[100%] my-2 rounded-xl p-2">Add New todo</button>
+            </div>
         </div>
     )
 
