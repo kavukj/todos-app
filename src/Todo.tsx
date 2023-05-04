@@ -6,7 +6,7 @@ type Props = {
 }
 
 const Todo: React.FC<Props> = ({ todo }) => {
-    const { setTodosList, updateTodosVisibility, updateTodos } = useContext(TodosContext) as TodoContent;
+    const { updateTodosVisibility, updateTodos } = useContext(TodosContext) as TodoContent;
     const [input, setInput] = useState('');
 
     //To handle subtask form
