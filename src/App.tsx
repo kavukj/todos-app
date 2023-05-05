@@ -30,7 +30,7 @@ const App = () => {
       {/* Navbar */}
       <nav className="flex justify-between p-3 bg-gray-700 text-white">
         <p className='mx-6 cursor-pointer hover:underline'>Dashboard</p>
-        {currentUser.name.length ?
+        {isAuthenticated ?
           <p className='mx-6 cursor-pointer hover:underline' onClick={handleLogout}>Logout</p>
           :
           <p className='mx-6 cursor-pointer hover:underline' onClick={handleLogin}>Login</p>
@@ -43,7 +43,7 @@ const App = () => {
       </div>
       {/* Returns Login button if no user logged */}
       <div className='flex justify-center h-[fit-content] my-8 items-center'>
-        {!currentUser.name.length ?
+        {!isAuthenticated ?
           <div>
             <button onClick={handleLogin}
               className='rounded-xl bg-gray-950 text-white py-3 px-10 text-xl h-[fit-content] hover:bg-gray-800'>
