@@ -6,12 +6,14 @@ import reportWebVitals from './reportWebVitals';
 import { UserContextProvider } from './context/usercontext';
 import { TodosContextWrapper } from './context/todosContext';
 import { Auth0Provider } from '@auth0/auth0-react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
     <Auth0Provider
     domain="dev-40iwt9kb.us.auth0.com"
     clientId="rYxwxmHyxArBhL4r0xgMwlYsUJrZ5EZC"
@@ -21,10 +23,13 @@ root.render(
   >
     <UserContextProvider>
       <TodosContextWrapper>
-        <App />
+        <Routes>
+          <Route path="/" element={<App/>}/>
+        </Routes>
       </TodosContextWrapper>
     </UserContextProvider>
     </Auth0Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
