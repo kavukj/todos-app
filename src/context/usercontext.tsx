@@ -1,24 +1,24 @@
 import React, { createContext, useState } from 'react';
 
 interface UserI{
-    name: string,
-    email: string
+    name: any,
+    email: any
 }
 export type userContent =  {
-    user: UserI,
+    currentUser: UserI,
     setUserVal: (value: UserI) => void
 }
 export const userContext = createContext<userContent | null>(null);
 
 export const UserContextProvider = (props: { children : any | null | undefined }) => {
 
-    const [user, setUser] = useState({ name: 'Kavya',email:'jankavya@gmail.com' });
+    const [currentUser, setUser] = useState({ name: '',email:'' });
 
     const setUserVal = (value:UserI) => {
         setUser(value)
     }
     return (
-        <userContext.Provider value={{ user, setUserVal }}>
+        <userContext.Provider value={{ currentUser, setUserVal }}>
             {props.children}
         </userContext.Provider>
     )

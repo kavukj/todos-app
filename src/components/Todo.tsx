@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { TodoContent, TodoI, TodosContext } from "./context/todosContext";
+import { TodoContent, TodoI, TodosContext } from "../context/todosContext";
 
 type Props = {
     todo: TodoI
@@ -48,9 +48,9 @@ const Todo: React.FC<Props> = ({ todo }) => {
                     <div>
                         <input className="rounded-md border border-black" type="text"
                             onChange={(e) => handleInputChange(e.target.value)} />
-                        <span className="text-white bg-green-600 hover:bg-green-700 mx-1 rounded-lg px-2 py-1 cursor-pointer"
-                            onClick={() => handleSubmit(todo.id, false)}>Add</span>
-                        <span className="text-white bg-red-600 hover:bg-red-700 rounded-lg px-2 py-1 font-extrabold cursor-pointer mx-1"
+                        <i className="fa fa-check text-white bg-green-600 hover:bg-green-700 mx-1 rounded-xl p-1 cursor-pointer"
+                            onClick={() => handleSubmit(todo.id, false)} />
+                        <span className="text-white bg-red-600 hover:bg-red-700 rounded-xl px-2 py-1 font-extrabold cursor-pointer mx-1"
                             onClick={() => updateTodosVisibility(todo.id, false)}>X</span>
                     </div> :
                     null}

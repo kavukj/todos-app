@@ -2,13 +2,26 @@ import './App.css';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { userContent, userContext } from './context/usercontext';
-import Todos from './Todos';
+import Todos from './components/Todos';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const App = () => {
-  const { user, setUserVal } = useContext(userContext) as userContent;
+  const { currentUser, setUserVal } = useContext(userContext) as userContent;
+  const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
 
   const handleLogin = () => {
-    setUserVal({ name: "Arpita", email: "jainarpita52@gmail.com" })
+    loginWithRedirect();
+    var newUser;
+    newUser = {
+      name: user?.name,
+      email: user?.email
+    }
+    setUserVal(newUser)
+  }
+
+  const handleLogout = () => {
+    logout({logoutParams:{returnTo:window.location.origin}})
+    setUserVal({ name: '', email: '' })
   }
 
   /* Using Tailwind Css for styling */
@@ -17,7 +30,11 @@ const App = () => {
       {/* Navbar */}
       <nav className="flex justify-between p-3 bg-gray-700 text-white">
         <p className='mx-6 cursor-pointer hover:underline'>Home</p>
-        <p className='mx-6 cursor-pointer hover:underline'>{user ? 'Logout' : 'Login'}</p>
+        {isAuthenticated ?
+          <p className='mx-6 cursor-pointer hover:underline' onClick={handleLogout}>Logout</p>
+          :
+          <p className='mx-6 cursor-pointer hover:underline' onClick={handleLogin}>Login</p>
+        }
       </nav>
 
       {/* Landing Page content */}
@@ -26,10 +43,12 @@ const App = () => {
       </div>
       {/* Returns Login button if no user logged */}
       <div className='flex justify-center h-[fit-content] my-8 items-center'>
-        {!user ?
-          <button onClick={handleLogin}
-            className='rounded-xl bg-gray-950 text-white py-3 px-10 text-xl h-[fit-content] hover:bg-gray-800'>
-            Login</button>
+        {!isAuthenticated ?
+          <div>
+            <button onClick={handleLogin}
+              className='rounded-xl bg-gray-950 text-white py-3 px-10 text-xl h-[fit-content] hover:bg-gray-800'>
+              Login</button>
+          </div>
           :
           <Todos />
         }

@@ -5,17 +5,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserContextProvider } from './context/usercontext';
 import { TodosContextWrapper } from './context/todosContext';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+    <Auth0Provider
+    domain="dev-40iwt9kb.us.auth0.com"
+    clientId="rYxwxmHyxArBhL4r0xgMwlYsUJrZ5EZC"
+    authorizationParams={{
+      redirect_uri: window.location.origin
+    }}
+  >
     <UserContextProvider>
       <TodosContextWrapper>
         <App />
       </TodosContextWrapper>
     </UserContextProvider>
+    </Auth0Provider>
   </React.StrictMode>
 );
 
