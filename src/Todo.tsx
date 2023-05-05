@@ -8,6 +8,7 @@ type Props = {
 const Todo: React.FC<Props> = ({ todo }) => {
     const { updateTodosVisibility, updateTodos } = useContext(TodosContext) as TodoContent;
     const [input, setInput] = useState('');
+    const [showSubTask, setShowSubTask] = useState(false)
 
     //To handle subtask form
     const handleSubTask = (id: number, value: boolean) => {
@@ -25,10 +26,21 @@ const Todo: React.FC<Props> = ({ todo }) => {
         updateTodosVisibility(todo.id, false)
     }
 
+    const showSubTasks = (show: boolean) => {
+        setShowSubTask(show)
+    }
+
     return (
         <>
             <div className="border-solid  bg-white border border-gray-400 p-2 w-[500px] flex justify-between items-center">
-                <p>{todo.name} - {todo.subTasks.length} tasks</p>
+                <p>
+                    {showSubTask ?
+                        <i className="fa fa-angle-up" onClick={() => showSubTasks(false)} />
+                        :
+                        <i className="fa fa-angle-down" onClick={() => showSubTasks(true)} />
+                    }
+                    &nbsp;&nbsp;{todo.name} - {todo.subTasks.length} tasks
+                </p>
                 {!todo.formVisible &&
                     <button className="bg-gray-900 hover:bg-gray-700 py-1 px-2 rounded-md text-sm mx-2 text-white"
                         onClick={() => handleSubTask(todo.id, true)}>Add Subtask</button>}
@@ -43,13 +55,15 @@ const Todo: React.FC<Props> = ({ todo }) => {
                     </div> :
                     null}
             </div>
-            <ul className="bg-gray-300 mx-2 p-2">
-                {todo.subTasks.length ?
-                    todo.subTasks.map((subtask) => (
-                        <li className="text-black border-b-2 py-1 list-disc">{subtask}</li>
-                    ))
-                    : null}
-            </ul>
+            {showSubTask ?
+                <ul className="bg-gray-300 mx-2 p-2">
+                    {todo.subTasks.length ?
+                        todo.subTasks.map((subtask) => (
+                            <li className="text-black border-b-2 py-1 list-disc">{subtask}</li>
+                        ))
+                        : null}
+                </ul>
+                : null}
         </>
     )
 }

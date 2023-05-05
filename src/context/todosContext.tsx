@@ -19,9 +19,7 @@ export const TodosContext = createContext<TodoContent | null>(null);
 
 export const TodosContextWrapper = (props: { children: any | null | undefined; }) => {
     const [todos, setTodos] = useState<TodoI[]>([
-        { id: 1, name: "Groccer", subTasks: ['Buy Mango', 'Buy Apples'], formVisible: false },
-        { id: 2, name: "Study", subTasks: [], formVisible: false },
-        { id: 3, name: "Shop", subTasks: ['Buy Apples'], formVisible: false }
+        { id: 1, name: "Groccer", subTasks: [], formVisible: false },
     ])
 
     //To add new todo in our list
@@ -32,6 +30,7 @@ export const TodosContextWrapper = (props: { children: any | null | undefined; }
             subTasks: [],
             formVisible: false
         }
+
         setTodos([...todos, todo])
     }
 
@@ -54,7 +53,6 @@ export const TodosContextWrapper = (props: { children: any | null | undefined; }
             }
         })
 
-        console.log(todos)
         setTodos([...todos])
     }
 
