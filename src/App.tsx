@@ -29,7 +29,7 @@ const App = () => {
     <div className='bg-gray-100 h-[100vh]'>
       {/* Navbar */}
       <nav className="flex justify-between p-3 bg-gray-700 text-white">
-        <p className='mx-6 cursor-pointer hover:underline'>Home</p>
+        <p className='mx-6 cursor-pointer hover:underline'>Dashboard</p>
         {isAuthenticated ?
           <p className='mx-6 cursor-pointer hover:underline' onClick={handleLogout}>Logout</p>
           :
