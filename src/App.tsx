@@ -20,7 +20,7 @@ const App = () => {
   }
 
   const handleLogout = () => {
-    logout({logoutParams:{returnTo:window.location.origin}})
+    logout({logoutParams:{returnTo:'https://kavukj.github.io/todos-app'}})
     setUserVal({ name: '', email: '' })
   }
 

@@ -13,12 +13,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Auth0Provider
     domain="dev-40iwt9kb.us.auth0.com"
     clientId="rYxwxmHyxArBhL4r0xgMwlYsUJrZ5EZC"
     authorizationParams={{
-      redirect_uri: window.location.origin
+      redirect_uri: 'https://kavukj.github.io/todos-app'
     }}
   >
     <UserContextProvider>

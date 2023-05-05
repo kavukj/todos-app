@@ -2,6 +2,7 @@
   "name": "todos-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://kavukj.github.io/todos-app",
   "dependencies": {
     "@auth0/auth0-react": "^2.0.2",
     "@testing-library/jest-dom": "^5.16.5",
